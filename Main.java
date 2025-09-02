@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class Main{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{ 
         TodoList todoList = new TodoList();
 
         boolean running = true;
@@ -10,11 +11,13 @@ public class Main{
 
         System.out.println("Welcome to SimpleTODO!");
         System.out.println("To get started, select an action from the following list.");
-        System.out.println("1. Add item");
+        System.out.println("1. Add item.");
         System.out.println("2. View list.");
         System.out.println("3. Remove item.");
         System.out.println("4: Mark an item as done.");
-        System.out.println("5. Exit program.");
+        System.out.println("5. Save TODO list.");
+        System.out.println("6. Import previous TODO list.");
+        System.out.println("7. Exit program.");
 
         while(running){
             System.out.print("Enter number here: ");
@@ -41,6 +44,18 @@ public class Main{
                 scanner.nextLine();
                 System.out.println("Item marked complete!");
             } else if(answer == 5){
+                PrintStream output = new PrintStream("SaveData.csv");
+                todoList.saveList(output);
+                System.out.println("List saved!");
+            } else if(answer == 6){
+                Scanner fileInput = new Scanner(new File("SaveData.csv"));
+                while(fileInput.hasNextLine()){
+                    String nextLine = fileInput.nextLine();
+                    todoList.loadLine(nextLine);
+                }
+                fileInput.close();
+                System.out.println("List imported!");
+            } else if(answer == 7){
                 System.out.println("Thank you for using SimpleTODO");
                 running = false;
             } else {

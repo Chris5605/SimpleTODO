@@ -7,6 +7,11 @@ public class ListItem {
         isDone = false;
     }
 
+    public ListItem(String itemDesc, boolean isDone){
+        this.itemDesc = itemDesc;
+        this.isDone = isDone;
+    }
+
     public void changeDesc(String itemDesc){
         this.itemDesc = itemDesc;
     }
