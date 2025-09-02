@@ -18,11 +18,9 @@ public class Main{
 
         while(running){
             System.out.print("Enter number here: ");
-            String currLine = scanner.nextLine();
 
-            Scanner lineScan = new Scanner(currLine);
-            int answer = lineScan.nextInt();
-            lineScan.close();
+            int answer = scanner.nextInt();
+            scanner.nextLine();
 
             if (answer == 1){
                 System.out.print("Please enter item description: ");
@@ -33,18 +31,14 @@ public class Main{
             } else if (answer == 3){
                 todoList.listItems();
                 System.out.print("Please enter index of item you want removed: ");
-                String newLine = scanner.nextLine();
-                Scanner partScan = new Scanner(newLine);
-                todoList.removeItem(partScan.nextInt());
-                partScan.close();
+                todoList.removeItem(scanner.nextInt());
+                scanner.nextLine();
                 System.out.println("Item removed!");
             } else if(answer == 4){
                 todoList.listItems();
                 System.out.print("Please enter index of item you completed: ");
-                String newLine = scanner.nextLine();
-                Scanner partScan = new Scanner(newLine);
-                todoList.markDone(partScan.nextInt());
-                partScan.close();
+                todoList.markDone(scanner.nextInt());
+                scanner.nextLine();
                 System.out.println("Item marked complete!");
             } else if(answer == 5){
                 System.out.println("Thank you for using SimpleTODO");
